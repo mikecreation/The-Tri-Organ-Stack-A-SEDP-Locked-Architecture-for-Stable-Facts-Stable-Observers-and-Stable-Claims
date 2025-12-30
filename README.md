@@ -1,0 +1,2 @@
+# The-Tri-Organ-Stack-A-SEDP-Locked-Architecture-for-Stable-Facts-Stable-Observers-and-Stable-Claims
+We give operational definitions, a unified necessary-and-sufficient success predicate, lesion failures, minimality arguments, and witness tests. The result is a single system-level object that clarifies why replication can fail without new physics and why agree- ment requires more than observation, memory, or social consensus.
