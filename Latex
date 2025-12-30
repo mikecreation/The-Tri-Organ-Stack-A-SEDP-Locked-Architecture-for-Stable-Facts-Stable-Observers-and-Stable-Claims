@@ -1,0 +1,343 @@
+\documentclass[10pt,twocolumn]{article}
+
+% --- Layout & Typography ---
+\usepackage[margin=0.75in, columnsep=0.3in, bottom=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{parskip}
+\setlength{\parskip}{4pt}          % keep paragraph spacing, avoid giant vertical gaps
+\setlength{\parindent}{0pt}        % no indentation (matches parskip style)
+
+% --- Math & Symbols ---
+\usepackage{amsmath,amssymb}
+\usepackage{physics}
+
+% --- Links / Figures / Color ---
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+% --- Boxes ---
+\usepackage[most]{tcolorbox}
+
+% --- Two-column safety ---
+\emergencystretch=2em
+
+% --- Custom Colors ---
+\definecolor{techblue}{RGB}{0, 80, 180}
+\definecolor{techcyan}{RGB}{0, 180, 220}
+\definecolor{techgray}{RGB}{70, 75, 80}
+
+% --- Global tcolorbox settings (two-column safe) ---
+\tcbset{
+  enhanced jigsaw,
+  parbox=false,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt,
+  boxsep=2pt,
+  before skip=6pt,
+  after skip=6pt,
+  width=\linewidth,
+  colbacktitle=white,
+  coltitle=black,
+  fonttitle=\bfseries
+}
+
+% --- Box Definitions (unbreakable to prevent column splitting) ---
+\newtcolorbox{conceptbox}[1][]{
+  colback=techcyan!6,
+  colframe=techcyan!60!black,
+  leftrule=3pt,
+  title={#1},
+  breakable=false
+}
+
+\newtcolorbox{mathbox}[1][]{
+  colback=techblue!4,
+  colframe=techblue!70!black,
+  leftrule=3pt,
+  title={#1},
+  breakable=false,
+  fontupper=\small\raggedright
+}
+
+% --- Macros ---
+\newcommand{\ORCID}{0009-0001-9194-938X}
+
+\newcommand{\Oorg}{\mathcal{O}}  % Objectivity Organ
+\newcommand{\Aorg}{\mathcal{A}}  % Active Inference Organ
+\newcommand{\Worg}{\mathcal{W}}  % Witness Organ
+
+\newcommand{\Leff}{\mathcal{L}_{\mathrm{eff}}}
+\newcommand{\Iacc}{I_{\mathrm{acc}}}
+\newcommand{\kb}{k_{\mathrm{B}}}
+
+\newcommand{\Chall}{\mathcal{C}} % admissible challenge class
+\newcommand{\Claim}{C}           % claim variable
+
+% --- Title Information ---
+\title{\bfseries\huge The Tri-Organ Stack\\
+{\Large\normalfont\color{techgray} A SEDP-Locked Architecture for Stable Facts, Stable Observers, and Stable Claims}}
+\author{\textbf{Michael Zot}\\ ZotBot Research Initiative\\
+\small ORCID: \href{https://orcid.org/\ORCID}{\ORCID}}
+\date{December 29, 2025}
+
+\begin{document}
+\raggedbottom
+
+\maketitle
+
+\begin{abstract}
+\noindent \textbf{Abstract.}
+This note defines a minimal architecture for durable knowledge in a world of bounded observers.
+We SEDP-lock a Tri-Organ Stack composed of: (i) an \emph{Objectivity Organ} \(\Oorg\) that produces stable, redundantly readable records from quantum substrates, (ii) an \emph{Active Inference Organ} \(\Aorg\) that produces persistent bounded observers capable of acting and updating, and (iii) a \emph{Witness Organ} \(\Worg\) that stabilizes claims under admissible adversarial challenges.
+We give operational definitions, a unified necessary-and-sufficient success predicate, lesion failures, minimality arguments, and witness tests.
+The result is a single system-level object that clarifies why replication can fail without new physics and why agreement requires more than observation, memory, or social consensus.
+\end{abstract}
+
+\section{Why a stack is needed}
+
+Stable facts are not automatically trustworthy.
+Stable observers are not automatically correct.
+Agreement is not automatically robustness.
+
+Durable knowledge requires three distinct sub-systems: a mechanism that produces public records, a mechanism that produces persistent agents, and a mechanism that converts records into adversarially stable claims.
+This note formalizes that triad as one composed architecture and links it to three companion papers that fully specify each organ \cite{ZotObjectivity2025,ZotAIF2025,ZotWitness2025}.
+
+\section{SEDP in one paragraph}
+
+\begin{conceptbox}[SEDP (System Emergence Discovery Protocol)]
+SEDP is a protocol for turning scattered mechanisms into a system-level object by forcing five locks.
+Definition Lock forces an operational definition.
+Success Predicate Lock forces a measurable criterion for success.
+Lesion Lock forces predicted failures when sub-functions are removed.
+Minimality Lock forces pruning to the smallest set that still works.
+Witness Lock forces diagnostics that decide success or failure in practice.
+\end{conceptbox}
+
+\section{Phenomenon}
+
+\begin{conceptbox}[Phenomenon]
+Operational durable knowledge is present when bounded agents can extract the same fact variable from disjoint records, persist long enough to repeat sampling and intervention, and converge on claims that remain stable under admissible adversarial challenges.
+\end{conceptbox}
+
+\section{Definition Lock}
+
+\begin{conceptbox}[Operational definition]
+The Tri-Organ Stack is present when independent bounded agents can (i) infer the same fact variable \(X\) from disjoint environment fragments, (ii) maintain themselves long enough to repeatedly sample and act, and (iii) converge on claims about \(X\) that remain stable under a defined class of admissible challenges, without requiring privileged access or coordination.
+\end{conceptbox}
+
+\section{The three organs}
+
+\subsection{Objectivity Organ \(\Oorg\)}
+
+\begin{mathbox}[Role]
+\(\Oorg\) succeeds when a variable \(X\) becomes operationally objective: independent observers can infer \(X\) from disjoint records without coordination and without materially disturbing the source.
+This requires (i) locally accessible redundancy, (ii) persistence under erasure and reset constraints, and (iii) scale stability of effective descriptions.
+\end{mathbox}
+
+This organ formalizes the decoherence, redundancy, thermodynamic stabilization, and coarse-graining stack in a single necessary-and-sufficient condition \cite{ZotObjectivity2025}.
+The physics foundations include decoherence and einselection \cite{Zurek2003,Joos2003}, environment-as-witness objectivity \cite{Ollivier2004}, erasure bounds \cite{Landauer1961,Berut2012}, and scale stability via renormalization \cite{Wilson1971}.
+Known pitfalls in naive mutual-information witnesses and the role of SBS/Strong-QD structure are treated explicitly in the companion sources \cite{Korbicz2021,Le2019,ChisholmQC2022,ChisholmAveragedMI2024}.
+
+\subsection{Active Inference Organ \(\Aorg\)}
+
+\begin{mathbox}[Role]
+\(\Aorg\) succeeds when bounded observers persist over a horizon \([0,T]\) under uncertainty and control constraints, maintaining an internal state and policy that remain coherent and viable.
+Active inference provides a structured candidate mechanism via variational free energy minimization under a statistical boundary.
+\end{mathbox}
+
+This organ is SEDP-locked in the companion paper \cite{ZotAIF2025}, grounded in active inference and Free Energy Principle literature \cite{Friston2009,Friston2010,ParrFriston2019,Buckley2017}.
+The key point here is minimal: stable facts require stable observers capable of repeated sampling, intervention, and updating.
+
+\subsection{Witness Organ \(\Worg\)}
+
+\begin{mathbox}[Role]
+\(\Worg\) succeeds when candidate claims about \(X\) remain stable under an admissible class of adversarial challenges.
+It converts records into durable commitments by enforcing boundary rules, inference updates, challenge generation, confidence governance, and stabilization across time and turnover.
+\end{mathbox}
+
+This organ is defined and SEDP-locked in the companion paper \cite{ZotWitness2025}.
+The general motivation aligns with falsifiability and adversarial testing norms \cite{Popper1959}, and with modern reproducibility and robustness concerns \cite{Ioannidis2005,Nosek2015}.
+
+\section{Success Predicate Lock}
+
+\begin{mathbox}[Unified success predicate]
+Over horizon \([0,T]\), the Tri-Organ Stack exists if and only if there exist \(X\), an environment partition, observer set, and an admissible challenge class such that:
+\[
+\exists\, X,\{E_k\},\{A_i\},\Chall\ \text{s.t.}\ \mathsf{OBJ}(X)\wedge \mathsf{AGT}(\{A_i\})\wedge \mathsf{WIT}(\Claim,\Chall).
+\]
+Here \(\mathsf{OBJ}(X)\) denotes \(\Oorg\) success, \(\mathsf{AGT}\) denotes \(\Aorg\) success, and \(\mathsf{WIT}\) denotes \(\Worg\) success for claims about \(X\).
+\end{mathbox}
+
+Operationally: facts must be extractable from disjoint records; observers must persist to repeat sampling and act; and claims must survive structured attempts to break them.
+
+\section{Lesion Lock}
+
+\begin{conceptbox}[Organ-level lesion predictions]
+Lesion of \(\Oorg\): no stable public records, so convergence is impossible even with perfect observers.\\
+Lesion of \(\Aorg\): no persistent observers, so records cannot be repeatedly sampled or used.\\
+Lesion of \(\Worg\): no adversarial filter, so claims drift with incentives and narratives rather than evidence.
+\end{conceptbox}
+
+\begin{conceptbox}[Cross-cutting lesion signatures]
+Boundary failure yields confounds and injection.\\
+Precision failure yields dogmatism or relativism.\\
+Action failure yields correlation traps.\\
+Stabilization failure yields drift and institutional amnesia.
+\end{conceptbox}
+
+\section{Minimality Lock}
+
+\begin{mathbox}[Minimality argument]
+Two-organ subsets fail to produce durable knowledge:
+\(\Oorg+\Aorg\) without \(\Worg\) yields unfiltered consensus vulnerable to systematic delusion.
+\(\Oorg+\Worg\) without \(\Aorg\) yields procedures without persistent agents to run them.
+\(\Aorg+\Worg\) without \(\Oorg\) yields adversarial debate without stable facts.
+Therefore, the triad is a minimal architecture for the stated phenomenon.
+\end{mathbox}
+
+\section{Witness Lock}
+
+\begin{mathbox}[Stack-level witnesses]
+Cross-fragment consensus: different agents infer the same \(X\) from disjoint records.\\
+Intervention separation: actions split competing models predictably.\\
+Adversarial robustness: red-team challenges fail to flip claims within admissible rules.\\
+Time stability: claims persist across operator turnover and toolchain changes within tolerance.
+\end{mathbox}
+
+\section{Conclusion}
+
+The Tri-Organ Stack is a single SEDP-locked object that links stable facts, stable observers, and stable claims.
+It explains how replication can fail without new physics when convergence machinery is damaged.
+It also provides a diagnostic language for science, engineering, AI safety, and institutional epistemics by mapping failures to lesion signatures.
+
+\appendix
+\section{Companion papers and canonical links}
+
+\begin{conceptbox}[Companion papers]
+Objectivity Organ: \href{https://github.com/mikecreation/The-Objectivity-Organ-Definition-Criteria-and-Failure-Modes-for-Classical-Objectivity/blob/main/The\%20Objectivity\%20Organ\%20Definition\%2C\%20Criteria\%2C\%20and\%20Failure\%20Modes\%20for\%20Classical\%20Objectivity.pdf}{GitHub PDF}\\
+Active Inference Organ: \href{https://github.com/mikecreation/The-Active-Inference-Organ-A-SEDP-Locked-Account-of-Bounded-Agency-and-Persistent-Selves/blob/main/The_Active_Inference_Organ_A_SEDP_Locked_Account_of_Bounded_Agency_and_Persistent_Selves\%20(1).pdf}{GitHub PDF}\\
+Witness Organ: \href{https://github.com/mikecreation/The-Witness-Organ-Definition-Criteria-and-Failure-Modes-for-Adversarially-Stable-Claims/blob/main/The_Witness_Organ_Definition__Criteria__and_Failure_Modes_for_Adversarially_Stable_Claims.pdf}{GitHub PDF}
+\end{conceptbox}
+
+% ======================
+% References
+% ======================
+\begin{thebibliography}{99}
+
+% --- Your three GitHub papers (author archive) ---
+\bibitem{ZotObjectivity2025}
+M. Zot,
+\emph{The Objectivity Organ: Definition, Criteria, and Failure Modes for Classical Objectivity},
+ZotBot Research Initiative, GitHub PDF (2025).
+\href{https://github.com/mikecreation/The-Objectivity-Organ-Definition-Criteria-and-Failure-Modes-for-Classical-Objectivity/blob/main/The\%20Objectivity\%20Organ\%20Definition\%2C\%20Criteria\%2C\%20and\%20Failure\%20Modes\%20for\%20Classical\%20Objectivity.pdf}{Link}.
+
+\bibitem{ZotAIF2025}
+M. Zot,
+\emph{The Active Inference Organ: A SEDP-Locked Account of Bounded Agency and Persistent Selves},
+ZotBot Research Initiative, GitHub PDF (2025).
+\href{https://github.com/mikecreation/The-Active-Inference-Organ-A-SEDP-Locked-Account-of-Bounded-Agency-and-Persistent-Selves/blob/main/The_Active_Inference_Organ_A_SEDP_Locked_Account_of_Bounded_Agency_and_Persistent_Selves\%20(1).pdf}{Link}.
+
+\bibitem{ZotWitness2025}
+M. Zot,
+\emph{The Witness Organ: Definition, Criteria, and Failure Modes for Adversarially Stable Claims},
+ZotBot Research Initiative, GitHub PDF (2025).
+\href{https://github.com/mikecreation/The-Witness-Organ-Definition-Criteria-and-Failure-Modes-for-Adversarially-Stable-Claims/blob/main/The_Witness_Organ_Definition__Criteria__and_Failure_Modes_for_Adversarially_Stable_Claims.pdf}{Link}.
+
+% --- Core objectivity literature ---
+\bibitem{Zurek2003}
+W. H. Zurek,
+\emph{Decoherence, einselection, and the quantum origins of the classical},
+Rev. Mod. Phys. \textbf{75}, 715 (2003).
+
+\bibitem{Joos2003}
+E. Joos et al.,
+\emph{Decoherence and the Appearance of a Classical World in Quantum Theory},
+Springer (2003).
+
+\bibitem{Ollivier2004}
+H. Ollivier, D. Poulin, and W. H. Zurek,
+\emph{Objective Properties from Subjective Quantum States: Environment as a Witness},
+Phys. Rev. Lett. \textbf{93}, 220401 (2004).
+
+\bibitem{Landauer1961}
+R. Landauer,
+\emph{Irreversibility and Heat Generation in the Computing Process},
+IBM J. Res. Dev. \textbf{5}, 183 (1961).
+
+\bibitem{Berut2012}
+A. B\'erut et al.,
+\emph{Experimental verification of Landauer's principle linking information and thermodynamics},
+Nature \textbf{483}, 187 (2012).
+
+\bibitem{Wilson1971}
+K. G. Wilson,
+\emph{Renormalization Group and Critical Phenomena. I. Renormalization Group and the Kadanoff Scaling Picture},
+Phys. Rev. B \textbf{4}, 3174 (1971).
+
+\bibitem{Korbicz2021}
+J. K. Korbicz,
+\emph{Roads to objectivity: Quantum Darwinism, Spectrum Broadcast Structures, and Strong Quantum Darwinism},
+Quantum \textbf{5}, 571 (2021).
+
+\bibitem{Le2019}
+T. P. Le and A. Olaya-Castro,
+\emph{Strong Quantum Darwinism and Strong Independence are Equivalent to Spectrum Broadcast Structure},
+Phys. Rev. Lett. \textbf{122}, 010403 (2019).
+
+\bibitem{ChisholmQC2022}
+D. A. Chisholm et al.,
+\emph{Witnessing Objectivity on a Quantum Computer},
+Quantum Sci. Technol. \textbf{7}, 015022 (2022).
+
+\bibitem{ChisholmAveragedMI2024}
+D. A. Chisholm, L. Innocenti, and G. M. Palma,
+\emph{Importance of using the averaged mutual information in quantum Darwinism: definitions and examples},
+Phys. Rev. A \textbf{110}, 012218 (2024).
+
+% --- Active inference ---
+\bibitem{Friston2009}
+K. Friston,
+\emph{The free-energy principle: a rough guide to the brain},
+Trends Cogn. Sci. \textbf{13}(7), 293--301 (2009).
+
+\bibitem{Friston2010}
+K. Friston,
+\emph{The free-energy principle: a unified brain theory?},
+Nat. Rev. Neurosci. \textbf{11}, 127--138 (2010).
+
+\bibitem{ParrFriston2019}
+T. Parr and K. Friston,
+\emph{Generalised free energy and active inference},
+Biol. Cybern. \textbf{113}, 495--513 (2019).
+
+\bibitem{Buckley2017}
+C. L. Buckley et al.,
+\emph{The free energy principle for action and perception: a mathematical review},
+J. Math. Psychol. \textbf{81}, 55--79 (2017).
+
+% --- Witness / robustness ---
+\bibitem{Popper1959}
+K. Popper,
+\emph{The Logic of Scientific Discovery},
+Hutchinson (1959).
+
+\bibitem{Ioannidis2005}
+J. P. A. Ioannidis,
+\emph{Why Most Published Research Findings Are False},
+PLoS Med. \textbf{2}(8), e124 (2005).
+
+\bibitem{Nosek2015}
+Open Science Collaboration,
+\emph{Estimating the reproducibility of psychological science},
+Science \textbf{349}(6251), aac4716 (2015).
+
+\end{thebibliography}
+
+\end{document}
